@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+  <meta charset="utf-8">
+  <title>CSS Hover Card Effect</title>
+
+
+  <style media="screen">
+
+* {
+    outline: 1px solid red !important;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.background {
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    height: 120%;
+    width: 120%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-filter: blur(30px);
+    filter: blur(30px);
+}
+
+.card {
+    position: absolute;
+    border-radius: 8px;
+    height: 450px;
+    width: 400px;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 80px -10px black;
+    overflow: hidden;
+}
+
+.card-blur {
+    position: absolute;
+    height: 100%;
+    width: calc(100% + 1px);
+    background-color: black;
+    opacity: 0;
+    transition: opacity 0.15s ease-in;
+}
+
+.card:hover .card-blur {
+    opacity: 0.6;
+}
+
+.card-footer {
+    z-index: 1;
+    position: absolute;
+    height: 80px;
+    width: 100%;
+    bottom: 0;
+}
+
+svg#curve {
+    position: absolute;
+    fill: white;
+    left: 0;
+    bottom: 0;
+    width: 400px;
+    height: 450px;
+}
+
+.techs {
+    height: 80px;
+    width: 400px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100px;
+    margin: auto;
+}
+
+.tech {
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    background-color: white;
+    display: inline-block;
+    padding: 5px;
+    margin-right: 25px;
+    transform: translateY(200px);
+    
+    transition: transform 1s cubic-bezier(.46, 1.48, .18, .81);
+}
+
+.card:hover .tech {
+    transform: translateY(0px);
+}
+
+.project_info {
+	font-family: Inconsolata;
+    padding-left: 20px;
+    transform: translateY(250px);
+    
+    transition: transform 1s cubic-bezier(.31,1.21,.64,1.02);
+}
+
+.card:hover .project_info {
+    transform: translateY(0px);
+}
+
+.name {
+    font-weight: bolder;
+    padding-top: 5px;
+}
+
+.specification {
+    margin-top: 10px;
+}
+
+.tech.one {
+    height: 35px;
+    width: 35px;
+    margin-left: 20px;
+    padding: 0px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.tech.two {
+    transition-delay: 0.06s;
+}
+
+.tech.three {
+    transition-delay: 0.12s;
+}
+
+.tech.four {
+    transition-delay: 0.18s;
+}
+
+.tech.one .icon {
+    margin-top: 3px;
+    margin-left: 4px;
+    height: 80%;
+    width: 80%;
+    background-position: center;
+    background-size: cover;
+}
+
+.tech.two .icon {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.tech.three .icon {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+/* .tech.four .icon {
+    margin-top: 3px;
+    margin-left: 4px;
+    height: 18px;
+    width: 18px;
+    background-position: center;
+    background-size: cover;
+} */
+.tech.one .icon {
+    background-image: url(assets/python-logo-only.png);
+}
+.tech.two .icon {
+    background-image: url(assets/aws-bw.png);
+}
+.tech.three .icon {
+    background-image: url(assets/logo-llm.png);}
+/* .tech.four .icon {
+    background-image: url(assets/logo-call_of_chtullu.png);
+} */
+
+.card {
+    background-image: url(assets/logo-call_of_chtullu.png);
+}
+
+.background {
+}
+
+  </style>
+ </head>
+
+
+ <body>
+
+<div class="background"></div>
+<div id="curve" class="card">
+    <div class="card-footer">
+        <div class="techs">
+            <div class="tech one"><div class="icon"></div></div>
+            <div class="tech two"><div class="icon"></div></div>
+            <div class="tech three"><div class="icon"></div></div>
+            <!-- <div class="tech four"><div class="icon"></div></div> -->
+        </div>
+        <svg id="curve">
+            <path id="p" d="M0,200 Q80,100 400,200 V150 H0 V50" transform="translate(0 300)" />
+            <rect id="dummyRect" x="0" y="0" height="450" width="400"
+		  fill="transparent" />
+            <!-- slide up-->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,100 400,50 V150 H0 V50" fill="freeze" begin="dummyRect.mouseover" end="dummyRect.mouseout" dur="0.1s" id="bounce1" />
+            <!-- slide up and curve in -->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,0 400,50 V150 H0 V50" fill="freeze" begin="bounce1.end" end="dummyRect.mouseout" dur="0.15s" id="bounce2" />
+            <!-- slide down and curve in -->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,80 400,50 V150 H0 V50" fill="freeze" begin="bounce2.end" end="dummyRect.mouseout" dur="0.15s" id="bounce3" />
+            <!-- slide down and curve out -->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,45 400,50 V150 H0 V50" fill="freeze" begin="bounce3.end" end="dummyRect.mouseout" dur="0.1s" id="bounce4" />
+            <!-- curve in -->
+            <animate xlink:href="#p" attributeName="d" to="M0,50 Q80,50 400,50 V150 H0 V50" fill="freeze" begin="bounce4.end" end="dummyRect.mouseout" dur="0.05s" id="bounce5" />
+
+            <animate xlink:href="#p" attributeName="d" to="M0,200 Q80,100 400,200 V150 H0 V50" fill="freeze" begin="dummyRect.mouseout" dur="0.15s" id="bounceOut" />
+        </svg>
+        <div class="project_info">
+            <div class="name">Voluntário em Mestrado: Análise de Sentimento em Casos Judiciais</div>
+            <div class="specification">Inst. Brasileiro de Ensino, Desenv. e Pesquisa — IDP</div>
+        </div>
+    </div>
+    <div class="card-blur"></div>
+</div>  
+ </body>
+</html>

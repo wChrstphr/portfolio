@@ -7,6 +7,9 @@
 
   <style media="screen">
 
+* {
+    outline: 1px solid red !important;
+}
 
    /*THIS IS THE HOLDING CONTAINER*/
    .books_container{
@@ -19,28 +22,34 @@
     max-width: fit-content;
     width: 70%;
     margin-inline: auto;
-    background: #000;
     background-size: cover;
-    border-radius: 32px;
     transform: scale(1);
     transition: all 0.3s ease-in-out;
    }
 
    .first_shelf {
-    background: url('estimativas.png');
-   }
-   .second_shelf {
-    background: url('estimativas.png');
+    width: 50%;
+    height: auto;
+    border-radius: 32px;
+    }
+    
+    .first_shelf img {
+        width: 100%;
+        height: auto;
+    }
+.second_shelf {
+    background: url('assets/logo-capital_nexus.svg');
+    border-radius: 32px;
    }
    /*THIS IS THE INTERNAL CONTAINER THAT SHOWS ON HOVER*/
    .hoverdiv{
     position: relative;
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
     padding: 24px;
     background: rgba(0,0,0,0.8);
-    color: #fff;
+    color: #a20303;
     opacity: 0;
     border-radius: 32px;
     transition: all 0.3s ease-in-out;
@@ -50,7 +59,7 @@
 
 
    /*THIS IS THE MAIN LINE OF CODE THAT TARGETS THE INTERNAL CONTAINER*/
-   .container:hover .hoverdiv, .container:active .hoverdiv{
+   .first_shelf:hover .hoverdiv, .first_shelf:active .hoverdiv{
    /*ADD PROPERTIES HERE THAT YOU WANT TO CHANGE WHEN A USER HOVERS*/
    /*NOTE 1: MOST PROPERTIES WITH NUMERIC VALUES CAN BE ANIMATED*/
    /*NOTE 2: PROPERTIES WITHOUT NUMBERS, LIKE DISPLAY:BLOCK, WILL NOT ANIMATE*/
@@ -58,7 +67,7 @@
    }
 
 
-   .container:hover{
+   .first_shelf:hover, .second_shelf:hover{
     transform: scale(1.03);
    }
 
@@ -71,7 +80,15 @@
 
 <div class="books_container">
     <div class="first_shelf">
-        <div class="hoverdiv"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="hoverdiv">
+            <p>Voluntário em Mestrado: Análise de Sentimento de Casos Judiciais </p>
+            <img src="/assets/logo-call_of_chtullu.png" alt="Logomarca IDP">
+            <div class="project_tech">
+                Python
+                WebScrapping
+                Local LLM
+                AWS
+            </div>
         </div>
     </div>
     <div class="second_shelf">
